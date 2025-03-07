@@ -46,8 +46,6 @@ jobs:
       - name: Deploy docs
         run: |
           git checkout md-docs
-          
-          mike deploy --push 0.9.2
+          mike deploy --push --update-aliases 0.9.2
           mike set-default --push 0.9.2
-          
           mkdocs build --clean 
