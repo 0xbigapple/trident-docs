@@ -77,8 +77,7 @@ plugins:
   - search  
   - mike:
       version_selector: true
-      canonical_version: 0.9.2 
-
+      canonical_version: 0.9.2
 
 extra_css:
   - stylesheets/extra.css
