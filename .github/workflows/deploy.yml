@@ -1,8 +1,10 @@
 name: Deploy Documentation
 on:
-  push:
-    branches:
-      - main  # branch updated
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy (e.g. 0.9.2)'
+        required: true
 
 permissions:
   contents: write
@@ -18,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper versioning
+          fetch-depth: 0
       
       - uses: actions/setup-python@v4
         with:
@@ -26,21 +28,14 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install mkdocs-material
-          pip install mike
+          pip install mkdocs-material mike
       
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
-      - name: Build
+      - name: Configure Git
         run: |
-          mkdocs build --clean
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
       
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'site'
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4 
+      - name: Deploy docs
+        run: |
+          mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
+          mike set-default --push latest 
