@@ -1,4 +1,4 @@
-name: Deploy Documentation
+name: Deploy Trident Documentation
 on:
   workflow_dispatch:
     inputs:
