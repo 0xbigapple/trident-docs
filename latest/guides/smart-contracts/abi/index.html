@@ -855,7 +855,7 @@
 <h1 id="application-binary-interface">Application Binary Interface</h1>
 <p>The Application Binary Interface (ABI) is a data encoding scheme for working with smart contracts. The types defined in the ABI are the same as those you encounter when writing smart contracts with Solidity.</p>
 <h2 id="using-abi-in-trident">Using ABI in Trident</h2>
-<p>The <code>abi</code> package in Trident includes libraries to encode/decode ABIs. Here's an example of how to interact with a contract using ABI:</p>
+<p>The <code>abi</code> package in Trident includes libraries to encode/decode ABIs. Take calling <code>function totalSupply() public view returns (uint256)</code> function as an example to illustrate how to interact with a contract using ABI</p>
 <div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 1. Define function parameters (empty for totalSupply)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inputParameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyList</span><span class="p">();</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
