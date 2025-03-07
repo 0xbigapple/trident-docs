@@ -1,6 +1,9 @@
 name: Deploy Trident Documentation
 run-name: Deploy Trident Docs ${{ inputs.version }} 
 on:
+  push:
+    branches:
+      - md-docs
   workflow_dispatch:
     inputs:
       ref:
