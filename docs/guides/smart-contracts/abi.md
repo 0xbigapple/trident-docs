@@ -4,7 +4,7 @@ The Application Binary Interface (ABI) is a data encoding scheme for working wit
 
 ## Using ABI in Trident
 
-The `abi` package in Trident includes libraries to encode/decode ABIs. Here's an example of how to interact with a contract using ABI:
+The `abi` package in Trident includes libraries to encode/decode ABIs. Take calling `function totalSupply() public view returns (uint256)` function as an example to illustrate how to interact with a contract using ABI
 
 ```java
 // 1. Define function parameters (empty for totalSupply)

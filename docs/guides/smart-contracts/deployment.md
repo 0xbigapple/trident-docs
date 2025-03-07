@@ -42,7 +42,7 @@ Transaction signedTxn = client.signTransaction(txn);
 String txid = client.broadcastTransaction(signedTxn);
 ```
 
-## Deploy with Constructor Parameters
+## 3. Deploy with Constructor Parameters
 
 If your contract has a constructor with parameters:
 
