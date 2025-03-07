@@ -2,6 +2,10 @@ name: Deploy Documentation
 on:
   workflow_dispatch:
     inputs:
+      ref:
+        description: 'Branch or tag to deploy'
+        required: true
+        default: 'md-docs'
       version:
         description: 'Version to deploy (e.g. 0.9.2)'
         required: true
