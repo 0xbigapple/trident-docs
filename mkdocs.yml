@@ -58,7 +58,7 @@ nav:
 extra:
   version:
     provider: mike
-    default: 0.9.2
+    default: latest
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -77,7 +77,7 @@ plugins:
   - search  
   - mike:
       version_selector: true
-      canonical_version: 0.9.2
+      canonical_version: latest
       alias_type: symlink
 
 extra_css:
