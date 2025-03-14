@@ -1,4 +1,4 @@
-# Trident - TRON Java SDK
+# Trident - TRON Java SDK 0.9.2-debug
 
 ## Overview
 
