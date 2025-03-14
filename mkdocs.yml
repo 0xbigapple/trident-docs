@@ -27,16 +27,16 @@ theme:
     code: Roboto Mono
     size: 1.2rem      
   features:
-    - navigation.sections     # Keep section grouping
-    - navigation.expand      # Expand navigation by default
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
     - navigation.indexes
-    - navigation.top
-    - toc.integrate         # Integrate table of contents
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.code.annotate
-    
+
 nav:
   - Overview: index.md
   - Quick Start Guide: quickstart/getting-started.md
@@ -82,6 +82,12 @@ plugins:
 
 extra_css:
   - stylesheets/extra.css
+
+#online
+#site_url: https://tronprotocol.github.io/trident/
+#repo_url: https://github.com/tronprotocol/trident
+#repo_name: trident
+
 
 site_url: https://0xbigapple.github.io/trident-docs/
 repo_url: https://github.com/0xbigapple/trident-docs
