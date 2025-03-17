@@ -62,10 +62,11 @@ extra:
     default: latest
     fallback: latest
   no_cache: true
-  analytics:
-    provider: none
   features:
     - version-select
+
+analytics:
+  provider: none
 
 markdown_extensions:
   - pymdownx.highlight:
