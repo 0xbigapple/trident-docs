@@ -82,14 +82,9 @@ plugins:
       canonical_version: latest
       alias_type: redirect
       css_dir: stylesheets
-      javascript_dir: javascripts
 
 extra_css:
-  - /stylesheets/extra.css
-  - /stylesheets/version-select.css
-
-extra_javascript:
-  - /javascripts/version-select.js
+  - stylesheets/extra.css
 
 #online
 #site_url: https://tronprotocol.github.io/trident/
