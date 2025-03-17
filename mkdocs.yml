@@ -1,6 +1,7 @@
 site_name: Trident-Java SDK
 docs_dir: docs
 site_dir: site
+use_directory_urls: false
 
 theme:
   name: material  
@@ -84,11 +85,11 @@ plugins:
       javascript_dir: javascripts
 
 extra_css:
-  - stylesheets/extra.css
-  - stylesheets/version-select.css
+  - /stylesheets/extra.css
+  - /stylesheets/version-select.css
 
 extra_javascript:
-  - javascripts/version-select.js
+  - /javascripts/version-select.js
 
 #online
 #site_url: https://tronprotocol.github.io/trident/
