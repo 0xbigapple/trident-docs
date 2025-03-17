@@ -82,6 +82,7 @@ plugins:
       canonical_version: latest
       alias_type: redirect
       css_dir: stylesheets
+      base_path: /trident-docs/
 
 extra_css:
   - stylesheets/extra.css
