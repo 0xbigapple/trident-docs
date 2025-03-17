@@ -59,6 +59,7 @@ extra:
   version:
     provider: mike
     default: latest
+  no_cache: true
 
 markdown_extensions:
   - pymdownx.highlight:

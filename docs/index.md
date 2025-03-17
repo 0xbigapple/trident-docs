@@ -1,4 +1,4 @@
-# Trident - TRON Java SDK  -debug 0.9.2
+# Trident - TRON Java SDK
 
 ## Overview
 
@@ -92,3 +92,4 @@ uid: buildtrident@tron.network
 ## 🚀 Start Building with Trident
 
 Ready to explore Trident? Check out our [Quick Start Guide](quickstart/getting-started.md) to begin building on TRON blockchain!
+Let’s go!
