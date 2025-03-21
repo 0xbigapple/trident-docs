@@ -25,7 +25,7 @@ apply plugin: 'maven-publish'
 
 ext {
     bouncycastleVersion = '1.78.1'
-    junitJupiterVersion = '5.4.2'
+    junitJupiterVersion = '5.12.1'
     googleGuavaVersion = '33.0.0-jre'
 }
 
