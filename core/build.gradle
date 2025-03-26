@@ -37,7 +37,7 @@ dependencies {
     //json parsing
     implementation "com.alibaba.fastjson2:fastjson2:2.0.55"
 
-    implementation "io.quarkus.http:quarkus-http-core:5.3.3" //high
+    implementation "io.quarkus.http:quarkus-http-core:5.3.4" //high
 }
 
 protobuf {
