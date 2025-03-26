@@ -39,7 +39,7 @@ dependencies {
 
     implementation "io.quarkus.http:quarkus-http-core:5.3.3" //high
 
-    implementation "io.antmedia:ant-media-server:2.8.0" //high
+    implementation "io.antmedia:ant-media-server:2.10.0" //high
 }
 
 protobuf {
