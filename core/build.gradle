@@ -39,7 +39,7 @@ dependencies {
 
     implementation "io.quarkus.http:quarkus-http-core:5.3.3" //high
 
-    implementation "org.apache.ozone:ozone:1.4.0" //high
+    implementation "org.apache.ozone:ozone:1.4.1" //high
 
     implementation "dnsjava:dnsjava:3.5.0" //high
 }
