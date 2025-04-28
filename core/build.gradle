@@ -41,7 +41,7 @@ dependencies {
 
     implementation "org.apache.ozone:ozone:1.4.0" //high
 
-    implementation "dnsjava:dnsjava:3.5.0" //high
+    implementation "dnsjava:dnsjava:3.6.0" //high
 }
 
 protobuf {
