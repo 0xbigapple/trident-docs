@@ -3,6 +3,7 @@ org.tron.trident.abi.datatypes
 org.tron.trident.abi.datatypes.generated
 org.tron.trident.abi.datatypes.primitive
 org.tron.trident.abi.spi
+org.tron.trident.api
 org.tron.trident.commons
 org.tron.trident.core
 org.tron.trident.core.contract
@@ -15,4 +16,5 @@ org.tron.trident.core.utils
 org.tron.trident.crypto
 org.tron.trident.crypto.tuwenitypes
 org.tron.trident.exceptions
+org.tron.trident.proto
 org.tron.trident.utils
