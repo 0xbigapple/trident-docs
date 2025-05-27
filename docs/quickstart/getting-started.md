@@ -44,6 +44,13 @@ long balance = client.getAccountBalance("your_address"); // balance in SUN (1 TR
 System.out.println("Balance: " + balance / 1_000_000.0 + " TRX");
 ```
 
+### Get Account with Solidity gRPC endpoint
+
+```java
+Account accountSolidity = client.getAccount("your_address", NodeType.SOLIDITY_NODE);
+System.out.println(accountSolidity.getAssetCount());
+```
+
 ### Send TRX
 
 ```java
