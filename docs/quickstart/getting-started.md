@@ -130,6 +130,174 @@ TransactionInfo txInfo = client.getTransactionInfoById(txid);
 System.out.println("Transaction status: " + txInfo.getResult());
 ```
 
+## Scenario Examples
+
+### Build a Multisig Transaction
+
+Developers can send multi-transactions easily by Trident. Here is as an example of how to create a transfer transaction using account active permissions.
+
+The steps below illustrate a complete multisignature transaction process:
+
+1. Modify account permission (make a multiSign account, need 100 TRX)
+
+2. Select permission and create transfer transaction
+
+3. Sign transaction with permission accounts
+
+4. Broadcast transaction
+
+```
+
+package org.tron.trident.core;
+
+import static java.lang.Thread.sleep;
+
+import com.google.protobuf.ByteString;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.tron.trident.core.account.AccountPermissions;
+import org.tron.trident.core.account.ActivePermissionOperationsUtils;
+import org.tron.trident.core.exceptions.IllegalException;
+import org.tron.trident.core.key.KeyPair;
+import org.tron.trident.core.transaction.TransactionBuilder;
+import org.tron.trident.proto.Chain.Transaction;
+import org.tron.trident.proto.Chain.Transaction.Contract.ContractType;
+import org.tron.trident.proto.Common.Permission;
+import org.tron.trident.proto.Response.TransactionExtention;
+
+/**
+ * A demo for TRON multi-signature transactions.
+ *
+ * This demo illustrates the following steps:
+ * 1. Modify an account's permissions to require multiple signatures for certain operations.
+ * 2. Create a transaction that requires multi-signature.
+ * 3. Sign the transaction with the required keys.
+ * 4. Broadcast the multi-signed transaction.
+ */
+public class MultiSignDemo {
+
+  // NOTE: Replace with your private key. In a real application,
+  // use a secure way to manage private keys, such as environment variables or a secret manager.
+  private static final String OWNER_PRIVATE_KEY = "...";
+  // The account that will have its permissions updated for multi-sig.
+  private static final String OWNER_ADDRESS = new KeyPair(OWNER_PRIVATE_KEY).toBase58CheckAddress();
+
+  // The recipient address for the transfer.
+  private static final String TO_ADDRESS = "T...";
+
+  public static void main(String[] args) throws IllegalException, InterruptedException {
+    // Initialize the API wrapper to connect to the Nile testnet.
+    ApiWrapper client = ApiWrapper.ofNile(OWNER_PRIVATE_KEY);
+
+    // Generate 3 new key pairs to be used as active permissions.
+    List<KeyPair> activeKeyPairs = new ArrayList<>();
+    for (int i = 0; i < 3; i++) {
+      activeKeyPairs.add(KeyPair.generate());
+    }
+    System.out.println("Generated active addresses:");
+    System.out.println("1. " + activeKeyPairs.get(0).toBase58CheckAddress());
+    System.out.println("2. " + activeKeyPairs.get(1).toBase58CheckAddress());
+    System.out.println("3. " + activeKeyPairs.get(2).toBase58CheckAddress());
+
+
+    //======= STEP 1: Modify Account Permission to enable Multi-signature =======
+
+    System.out.println("\n======= STEP 1: Modifying account permissions... =======");
+
+    // Get the existing permissions of the owner account.
+    AccountPermissions accountPermissions = client.getAccountPermissions(OWNER_ADDRESS);
+
+    // Create a map of the new active keys and their weights. For this demo, all keys have a weight of 1.
+    Map<String, Long> activeKeyMap = new HashMap<>();
+    for (KeyPair keyPair : activeKeyPairs) {
+      activeKeyMap.put(keyPair.toBase58CheckAddress(), 1L);
+    }
+
+    // Define the operations that this active permission will control.
+    // Here, we restrict it to only TransferContract (TRX transfers).
+    ByteString trxTransferOperations = ActivePermissionOperationsUtils.buildOperations(
+        ByteString.EMPTY, true, ContractType.TransferContract);
+
+    // Create a new active permission.
+    // - "active": A custom name for the permission.
+    // - permissionId=2: The ID for this new permission. ID 0 is for owner, 1 is for witness.
+    // - threshold=2: The sum of weights of signatures required to approve a transaction (2 out of 3 in this case).
+    Permission activePermission = accountPermissions.createActivePermission("active", 2,
+        2, trxTransferOperations, activeKeyMap);
+
+    List<Permission> activePermissions = new ArrayList<>();
+    activePermissions.add(activePermission);
+
+    // Set the new active permissions for the account. The owner permission remains unchanged.
+    accountPermissions.setActivePermission(activePermissions);
+
+    // Create the transaction to update the account permissions on the blockchain.
+    TransactionExtention txnExt = client.accountPermissionUpdate(
+        OWNER_ADDRESS,
+        accountPermissions);
+
+    // The permission update transaction must be signed by the owner key.
+    Transaction signedTxn = client.signTransaction(txnExt);
+    String updateTxId = client.broadcastTransaction(signedTxn);
+
+    System.out.println("Account permission update transaction sent. TXID: " + updateTxId);
+    // Wait for the transaction to be confirmed on the blockchain.
+    System.out.println("Waiting for confirmation...");
+    sleep(10_000L);
+
+
+    // ======== STEP 2: Create a transaction using the new permission ========
+
+    System.out.println("\n======= STEP 2: Creating a multi-signature transfer... =======");
+
+    // Create a standard transfer transaction of 1 TRX (1,000,000 SUN).
+    TransactionExtention transferTxnExt = client.transfer(OWNER_ADDRESS, TO_ADDRESS, 1_000_000);
+
+    // Set the permission ID on the transaction to '2'.
+    // This tells the blockchain that this transaction must be signed by keys
+    // associated with the active permission we created in STEP 1.
+    TransactionBuilder transactionBuilder = new TransactionBuilder(transferTxnExt.getTransaction());
+    Transaction transferTransaction = transactionBuilder.setContractPermissionId(2).build();
+
+
+    // ======== STEP 3: Sign the transaction with multiple keys ========
+
+    System.out.println("\n======= STEP 3: Signing the transaction with active keys... =======");
+
+    // The transaction is signed sequentially by the active keys.
+    // Since the threshold is 2, we need signatures from any 2 of the 3 active keys.
+
+    // First active account signs.
+    System.out.println("Signing with key 1...");
+    Transaction signedTxn1 = client.signTransaction(transferTransaction, activeKeyPairs.get(0));
+
+    // Second active account signs the already partially signed transaction.
+    System.out.println("Signing with key 2...");
+    Transaction signedTxn2 = client.signTransaction(signedTxn1, activeKeyPairs.get(1));
+
+
+    // ======== STEP 4: Broadcast the multi-signed transaction ========
+
+    System.out.println("\n======= STEP 4: Broadcasting the transaction... =======");
+    String transferTxId = client.broadcastTransaction(signedTxn2);
+
+    System.out.println("Multi-signed transfer transaction sent. TXID: " + transferTxId);
+    // Wait for the transaction to be confirmed.
+    System.out.println("Waiting for confirmation...");
+    sleep(10_000L);
+
+    System.out.println("\nDemo finished successfully!");
+  }
+}
+
+
+```
+
+
+
+
 ## Learn More
 
 - Learn more about [Key Management](../guides/keypair/key-management.md)

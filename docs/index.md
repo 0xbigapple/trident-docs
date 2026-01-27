@@ -22,14 +22,15 @@ Trident includes three main modules:
 
 ## Install
 
-Trident is compiled with Java 1.8.
+Since version 0.11.0, Trident can be built with JDK 1.8 or JDK17 on Gradle 8.5.
+The latest version (built with JDK 1.8) can be found on [Maven Central](https://mvnrepository.com/artifact/io.github.tronprotocol/trident).
 
 ### Version 0.9.2 and Later
 
 #### Gradle
 
 ```groovy
-implementation("io.github.tronprotocol:trident:0.9.2")  // Check Maven Central for newer versions
+implementation("io.github.tronprotocol:trident:0.11.0")
 ```
 
 #### Maven
@@ -38,7 +39,7 @@ implementation("io.github.tronprotocol:trident:0.9.2")  // Check Maven Central f
 <dependency>
     <groupId>io.github.tronprotocol</groupId>
     <artifactId>trident</artifactId>
-    <version>0.9.2</version>  <!-- Check Maven Central for newer versions -->
+    <version>0.11.0</version> 
 </dependency>
 ```
 
