@@ -4,6 +4,8 @@
 
 TRON smart contracts are programs that run on the TRON Virtual Machine (TVM). The TVM is compatible with the Ethereum Virtual Machine (EVM), allowing developers to deploy and execute Solidity smart contracts.
 
+With Trident you can [deploy contracts](deployment.md) and [interact with them](interaction.md), encode and decode calls through the [Application Binary Interface](abi.md), and follow [worked examples](complex-abi-examples.md) that rebuild real JustLend V2 and SunSwap V4 transactions with ABI v2 structs.
+
 ## Best Practices
 
 ### Resource Management

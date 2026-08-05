@@ -14,15 +14,16 @@ Trident includes three main modules:
 
 ## Features
 
-- Complete implementation of TRON's gRPC interfaces
-- Smart contract deployment and interaction
+- Complete implementation of TRON's gRPC interfaces, with TLS support
 - Wallet key management and address utilities
-- Transaction building and signing
+- Transaction building, signing and multi-sign
+- Smart contract deployment and interaction
+- ABI v2 support: structs, nested arrays and packed encoding
 - TRC10/TRC20/TRC721 token support
 
 ## Install
 
-Since version 0.11.0, Trident can be built with JDK 1.8 or JDK17 on Gradle 8.5.
+Trident can be built with JDK 1.8 or JDK17 on Gradle 8.5.
 The latest version (built with JDK 1.8) can be found on [Maven Central](https://mvnrepository.com/artifact/io.github.tronprotocol/trident).
 
 ### Version 0.9.2 and Later
@@ -30,7 +31,7 @@ The latest version (built with JDK 1.8) can be found on [Maven Central](https://
 #### Gradle
 
 ```groovy
-implementation("io.github.tronprotocol:trident:0.11.0")
+implementation("io.github.tronprotocol:trident:1.0.0")
 ```
 
 #### Maven
@@ -39,10 +40,9 @@ implementation("io.github.tronprotocol:trident:0.11.0")
 <dependency>
     <groupId>io.github.tronprotocol</groupId>
     <artifactId>trident</artifactId>
-    <version>0.11.0</version> 
+    <version>1.0.0</version> 
 </dependency>
 ```
-
 ### Previous Versions (< 0.9.2)
 
 For versions before 0.9.2, you'll need to build from source:

@@ -50,9 +50,10 @@ nav:
     - Transaction Signing: guides/transactions/signing.md
   - Smart Contracts:
     - Overview: guides/smart-contracts/overview.md
-    - Application Binary Interface: guides/smart-contracts/abi.md
     - Contract Deployment: guides/smart-contracts/deployment.md
     - Contract Interaction: guides/smart-contracts/interaction.md
+    - Application Binary Interface: guides/smart-contracts/abi.md
+    - Complex ABI Examples: guides/smart-contracts/complex-abi-examples.md
   - API Reference:
     - javadoc: './javadoc/org/tron/trident/core/ApiWrapper.html'
 
@@ -93,11 +94,11 @@ extra_css:
   - stylesheets/extra.css
 
 #online
-#site_url: https://tronprotocol.github.io/trident/
-#repo_url: https://github.com/tronprotocol/trident
-#repo_name: trident
+site_url: https://tronprotocol.github.io/trident/
+repo_url: https://github.com/tronprotocol/trident
+repo_name: trident
 
 
-site_url: https://0xbigapple.github.io/trident-docs/
-repo_url: https://github.com/0xbigapple/trident-docs
-repo_name: trident-docs
+#site_url: https://0xbigapple.github.io/trident-docs/
+#repo_url: https://github.com/0xbigapple/trident-docs
+#repo_name: trident-docs

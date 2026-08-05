@@ -76,3 +76,46 @@ List<Type> params = Arrays.asList(
 ```
 
 Using incorrect types will result in transaction failure or unexpected behavior.
+
+## Struct Support (ABI v2)
+
+Trident supports ABI v2: structs (Solidity `tuple` types), nested structs, arrays of structs and nested arrays can all be encoded and decoded.
+
+Map a Solidity struct to a Java class by extending `StaticStruct` (all fields are fixed-size types) or `DynamicStruct` (contains at least one dynamic field such as `string`, `bytes` or a dynamic array), and pass the fields to the `super` constructor in declaration order:
+
+```solidity
+// In smart contract
+struct MarketParams {
+    address loanToken;
+    address collateralToken;
+    address oracle;
+    address irm;
+    uint256 lltv;
+}
+```
+
+```java
+import org.tron.trident.abi.datatypes.Address;
+import org.tron.trident.abi.datatypes.StaticStruct;
+import org.tron.trident.abi.datatypes.generated.Uint256;
+
+public class MarketParams extends StaticStruct {
+    public MarketParams(Address loanToken, Address collateralToken,
+        Address oracle, Address irm, Uint256 lltv) {
+      super(loanToken, collateralToken, oracle, irm, lltv);
+    }
+}
+```
+
+A struct class works like any other `Type`:
+
+- **Encode**: pass an instance as a function parameter to `FunctionEncoder.encode`, or encode it standalone with `TypeEncoder.encode(struct)` — for example to compute `keccak256(abi.encode(struct))` identifiers.
+- **Decode**: reference the class with `new TypeReference<MarketParams>() {}` in `FunctionReturnDecoder.decode`, and the decoder instantiates it through the constructor above.
+
+Structs nest naturally: a `DynamicStruct` can contain a `StaticStruct` field, and `DynamicArray<SomeStruct>` handles arrays of structs.
+
+For complete, runnable walkthroughs decoding and re-encoding real mainnet transactions of JustLend V2 and SunSwap V4 with structs, see [Complex ABI Examples](complex-abi-examples.md).
+
+## Packed Encoding
+
+`TypeEncoder.encodePacked(type)` implements Solidity's `abi.encodePacked` — values are concatenated without padding, as commonly used for hash-based signatures and commitments.
