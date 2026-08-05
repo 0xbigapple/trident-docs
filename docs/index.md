@@ -8,9 +8,9 @@ Trident includes three main modules:
 
 | Module | Description |
 |--------|-------------|
-| trident-core | Wrapping functions for easily interacting with TRON system and smart contracts |
-| trident-abi | Datatypes and ABI encoders/decoders |
-| trident-utils | Tools including encryption, conversion, etc. |
+| core | Wrapping functions for easily interacting with TRON system and smart contracts |
+| abi | Datatypes and ABI encoders/decoders |
+| utils | Tools including encryption, conversion, etc. |
 
 ## Features
 

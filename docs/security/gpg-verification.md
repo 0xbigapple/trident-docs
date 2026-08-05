@@ -25,13 +25,13 @@ uid: buildtrident@tron.network
 
 2. Download package files:
     ```bash
-    wget https://repo1.maven.org/maven2/io/github/tronprotocol/trident/0.9.2/trident-0.9.2.jar
-    wget https://repo1.maven.org/maven2/io/github/tronprotocol/trident/0.9.2/trident-0.9.2.jar.asc
+    wget https://repo1.maven.org/maven2/io/github/tronprotocol/trident/1.0.0/trident-1.0.0.jar
+    wget https://repo1.maven.org/maven2/io/github/tronprotocol/trident/1.0.0/trident-1.0.0.jar.asc
     ```
 
 3. Verify the signature:
     ```bash
-    gpg --verify trident-0.9.2.jar.asc trident-0.9.2.jar
+    gpg --verify trident-1.0.0.jar.asc trident-1.0.0.jar
     ```
 
     A successful verification will show:
