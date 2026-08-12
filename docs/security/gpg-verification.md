@@ -36,7 +36,7 @@ uid: buildtrident@tron.network
 
     A successful verification will show:
     ```text
-    gpg: Signature made Mon Mar  3 18:50:13 2025 CST
+    gpg: Signature made Tue Aug 11 17:40:48 2026 CST
     gpg:                using RSA key 3149FCA563772D1126249C36CC3F8CEA7B0C74D6
     gpg: Good signature from "trident <buildtrident@tron.network>"
     ```

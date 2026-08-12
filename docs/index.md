@@ -26,6 +26,9 @@ Trident includes three main modules:
 Trident can be built with JDK 1.8 or JDK17 on Gradle 8.5.
 The latest version (built with JDK 1.8) can be found on [Maven Central](https://mvnrepository.com/artifact/io.github.tronprotocol/trident).
 
+!!! note "Upgrading to 1.0.0"
+    Version 1.0.0 includes behavioral and dependency changes — see the [1.0.0 release notes](https://github.com/tronprotocol/trident/releases/tag/1.0.0) before upgrading.
+
 ### Version 0.9.2 and Later
 
 #### Gradle

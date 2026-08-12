@@ -23,7 +23,7 @@ public class QuickStart {
 }
 ```
 
-`ApiWrapperBuilder` is the recommended way to create a client. Configuration methods can be chained in any order, and the Solidity node endpoint is optional:
+`ApiWrapperBuilder` is the recommended way to create a client. Configuration methods are chainable — later calls to the same setting override earlier ones — and the Solidity node endpoint is optional:
 
 ```java
 import org.tron.trident.core.ApiWrapper;
